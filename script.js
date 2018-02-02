@@ -1,13 +1,26 @@
 
-var res, resU, num1, num2, prmt,
-	s_num = 0,
-	f_num = 1,
-	cnfrm = true,
+var cnfrm = true,
 	text = "<<Отмена>>  -  Выход,  <<Ок>>  -  Продолжить";
 
-for(s_num; s_num < 1;){
+	function opt_random(){
+		var a = Math.floor(Math.random() * 3 ) + 1;
 
-	prmt = +prompt("Количество вопросов?", "10");
+		if( a == 1) a = "+";
+		else if( a == 2) a = "-";
+		else if( a == 3 ) a = "*";
+
+		return a;
+	}
+
+	function num_random(min, max) {
+		var a = max - min +1,
+			b = Math.floor(Math.random() * a) + min;
+		return b;	
+	}
+
+for( var s_num = 0; s_num < 1; ++s_num){
+
+	var prmt = +prompt("Количество вопросов?", "10");
 
 	if(isNaN(prmt)){
 		cnfrm = confirm("Ошибка! Символы вводить нельзя." + "\n\r" + text);
@@ -20,13 +33,33 @@ for(s_num; s_num < 1;){
 	if( cnfrm == false) break;
 
 	if(cnfrm == true){
-		for( f_num = 1; f_num <= prmt; ++f_num ){
+		for( var f_num = 1; f_num <= prmt; ++f_num ){
 
-			num1 = (Math.floor(Math.random() * 11) + 1);
-			num2 = (Math.floor(Math.random() * 11) + 1);
-			res = num1 * num2; console.log(f_num + ".  " + res);
+			var res, resU, num1, num2;
+			var opt_random_res = opt_random();
 
-		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + " * " + num2 + " = ? ");
+			switch(opt_random_res){
+				case "+":
+					num1 = num_random(10, 100);
+					num2 = num_random(10, 100);
+					res = num1 + num2;
+					break;
+
+				case "-":
+					num1 = num_random(50, 100);
+					num2 = num_random(10, 50);
+					res = num1 - num2;
+					break;
+
+				case "*":
+					num1 = num_random(1, 10);
+					num2 = num_random(1, 10);
+					res = num1 * num2;
+					break;
+			}
+
+			console.log(res);
+		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + "  " + opt_random_res + "  " + num2 + " = ? ");
 
 		    if(isNaN(resU)){
 		    	cnfrm = confirm("Ошибка! Символы вводить нельзя." + "\n\r" + text);
@@ -40,9 +73,9 @@ for(s_num; s_num < 1;){
 
 		  	if(cnfrm == true){
 			  	if( res == resU){
-			  		alert("Ответ верный!\n\r" + num1 + " * " + num2 + " = " + res, "");
+			  		alert("Ответ верный!\n\r" + num1 + "  " + opt_random_res + "  "  + num2 + " = " + res, "");
 			  	}else {
-			  		alert("Ответ неверный!\n\r" + num1 + " * " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
+			  		alert("Ответ неверный!\n\r" + num1 + "  " + opt_random_res + "  " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
 			  	}
 			}
 
@@ -50,7 +83,5 @@ for(s_num; s_num < 1;){
 		}
 	}
 	
-	
-	if( cnfrm == false ) ++s_num;
 	if( cnfrm == true) --s_num;
 }
