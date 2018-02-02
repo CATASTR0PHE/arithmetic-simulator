@@ -50,6 +50,7 @@ for(s_num; s_num < 1;){
 		}
 	}
 	
+	
 	if( cnfrm == false ) ++s_num;
 	if( cnfrm == true) --s_num;
 }
