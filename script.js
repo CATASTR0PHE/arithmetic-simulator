@@ -2,10 +2,14 @@
 var cnfrm = true,
 	text = "<<Отмена>>  -  Выход,  <<Ок>>  -  Продолжить";
 
-	function num_random(min, max) {
+	function randInt(min, max) {
 		var a = max - min +1,
 			b = Math.floor(Math.random() * a) + min;
 		return b;	
+	}
+
+	function mathOp(a, b, op){
+
 	}
 
 for( var s_num = 0; s_num < 1; ++s_num){
@@ -25,34 +29,35 @@ for( var s_num = 0; s_num < 1; ++s_num){
 	if(cnfrm == true){
 		for( var f_num = 1; f_num <= prmt; ++f_num ){
 
-			var res, resU, num1, num2;
-			var op_random_res = Math.floor(Math.random() * 3 ) + 1;
+			var res, resU, num1, num2, op, code,
 
-			switch(op_random_res){
-				case 1:
-					op_random_res = "+";
-					num1 = num_random(10, 100);
-					num2 = num_random(10, 100);
+				var_m = ["+", "-", "*"];
+
+			op = randInt(0, 2);
+			code = var_m[op];
+
+			switch(code){
+				case "+":
+					num1 = randInt(10, 100);
+					num2 = randInt(10, 100);
 					res = num1 + num2;
 					break;
 
-				case 2:
-					op_random_res = "-";
-					num1 = num_random(50, 100);
-					num2 = num_random(10, 50);
+				case "-":
+					num1 = randInt(50, 100);
+					num2 = randInt(10, 50);
 					res = num1 - num2;
 					break;
 
-				case 3:
-					op_random_res = "*";
-					num1 = num_random(1, 10);
-					num2 = num_random(1, 10);
+				case "*":
+					num1 = randInt(1, 10);
+					num2 = randInt(1, 10);
 					res = num1 * num2;
 					break;
-			}
+				}
 
 			console.log(res);
-		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + "  " + op_random_res + "  " + num2 + " = ? ");
+		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + "  " + code + "  " + num2 + " = ? ");
 
 		    if(isNaN(resU)){
 		    	cnfrm = confirm("Ошибка! Символы вводить нельзя." + "\n\r" + text);
@@ -66,9 +71,9 @@ for( var s_num = 0; s_num < 1; ++s_num){
 
 		  	if(cnfrm == true){
 			  	if( res == resU){
-			  		alert("Ответ верный!\n\r" + num1 + "  " + op_random_res + "  "  + num2 + " = " + res, "");
+			  		alert("Ответ верный!\n\r" + num1 + "  " + code + "  "  + num2 + " = " + res, "");
 			  	}else {
-			  		alert("Ответ неверный!\n\r" + num1 + "  " + op_random_res + "  " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
+			  		alert("Ответ неверный!\n\r" + num1 + "  " + code + "  " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
 			  	}
 			}
 
