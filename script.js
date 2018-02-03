@@ -2,13 +2,8 @@
 var cnfrm = true,
 	text = "<<Отмена>>  -  Выход,  <<Ок>>  -  Продолжить";
 
-	function opt_random(){
+	function op_random(){
 		var a = Math.floor(Math.random() * 3 ) + 1;
-
-		if( a == 1) a = "+";
-		else if( a == 2) a = "-";
-		else if( a == 3 ) a = "*";
-
 		return a;
 	}
 
@@ -36,22 +31,25 @@ for( var s_num = 0; s_num < 1; ++s_num){
 		for( var f_num = 1; f_num <= prmt; ++f_num ){
 
 			var res, resU, num1, num2;
-			var opt_random_res = opt_random();
+			var op_random_res = op_random();
 
-			switch(opt_random_res){
-				case "+":
+			switch(op_random_res){
+				case 1:
+					op_random_res = "+";
 					num1 = num_random(10, 100);
 					num2 = num_random(10, 100);
 					res = num1 + num2;
 					break;
 
-				case "-":
+				case 2:
+					op_random_res = "-";
 					num1 = num_random(50, 100);
 					num2 = num_random(10, 50);
 					res = num1 - num2;
 					break;
 
-				case "*":
+				case 3:
+					op_random_res = "*";
 					num1 = num_random(1, 10);
 					num2 = num_random(1, 10);
 					res = num1 * num2;
@@ -59,7 +57,7 @@ for( var s_num = 0; s_num < 1; ++s_num){
 			}
 
 			console.log(res);
-		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + "  " + opt_random_res + "  " + num2 + " = ? ");
+		    resU = +prompt(+ f_num + " из " + prmt + "\n\rВопрос: " + num1 + "  " + op_random_res + "  " + num2 + " = ? ");
 
 		    if(isNaN(resU)){
 		    	cnfrm = confirm("Ошибка! Символы вводить нельзя." + "\n\r" + text);
@@ -73,9 +71,9 @@ for( var s_num = 0; s_num < 1; ++s_num){
 
 		  	if(cnfrm == true){
 			  	if( res == resU){
-			  		alert("Ответ верный!\n\r" + num1 + "  " + opt_random_res + "  "  + num2 + " = " + res, "");
+			  		alert("Ответ верный!\n\r" + num1 + "  " + op_random_res + "  "  + num2 + " = " + res, "");
 			  	}else {
-			  		alert("Ответ неверный!\n\r" + num1 + "  " + opt_random_res + "  " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
+			  		alert("Ответ неверный!\n\r" + num1 + "  " + op_random_res + "  " + num2 + " = " + resU + ";\n\rОтвет: " + res + ";");
 			  	}
 			}
 
