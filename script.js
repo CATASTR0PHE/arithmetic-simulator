@@ -2,11 +2,6 @@
 var cnfrm = true,
 	text = "<<Отмена>>  -  Выход,  <<Ок>>  -  Продолжить";
 
-	function op_random(){
-		var a = Math.floor(Math.random() * 3 ) + 1;
-		return a;
-	}
-
 	function num_random(min, max) {
 		var a = max - min +1,
 			b = Math.floor(Math.random() * a) + min;
@@ -31,7 +26,7 @@ for( var s_num = 0; s_num < 1; ++s_num){
 		for( var f_num = 1; f_num <= prmt; ++f_num ){
 
 			var res, resU, num1, num2;
-			var op_random_res = op_random();
+			var op_random_res = Math.floor(Math.random() * 3 ) + 1;
 
 			switch(op_random_res){
 				case 1:
